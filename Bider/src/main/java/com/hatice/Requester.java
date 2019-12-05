@@ -1,3 +1,5 @@
+package com.hatice;
+
 import com.google.gson.Gson;
 
 import java.io.DataInputStream;
@@ -19,7 +21,7 @@ public class Requester {
         String responseLine;
         System.out.println("here");
         while (!(responseLine = input.readLine()).equals("&&")) {
-            System.out.println("Server: " + responseLine);
+            System.out.println("com.hatice.Server: " + responseLine);
 
         }
 
@@ -37,7 +39,7 @@ public class Requester {
         out.writeBytes(new Gson().toJson(userRequest));
         out.writeBytes("\n");
         while (!(responseLine = input.readLine()).equals("&&")) {
-            System.out.println("Server: " + responseLine);
+            System.out.println("com.hatice.Server: " + responseLine);
 
         }
     }

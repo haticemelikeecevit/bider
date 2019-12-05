@@ -1,3 +1,5 @@
+package com.hatice;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Request {

@@ -1,5 +1,6 @@
+package com.hatice;
+
 import com.google.gson.Gson;
-import sun.jvm.hotspot.memory.SystemDictionary;
 
 import java.io.*;
 import java.net.ServerSocket;
