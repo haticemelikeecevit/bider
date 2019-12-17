@@ -13,9 +13,7 @@ public class Server {
     private static String bidsFile = "bids.json";
     private static String productsFile = "products.json";
 
-    private static BinarySemaphore usersFileMutex = new BinarySemaphore(true);
     private static BinarySemaphore bidsFileMutex = new BinarySemaphore(true);
-    private static BinarySemaphore productsFileMutex = new BinarySemaphore(true);
 
     private static List<ServerThread> threads = new ArrayList<ServerThread>();
     private static BinarySemaphore threadsMutex = new BinarySemaphore(true);
@@ -38,11 +36,9 @@ public class Server {
     }
 
     public static boolean login(User user) throws IOException {
-        usersFileMutex.P();
         BufferedReader reader = new BufferedReader(new FileReader(usersFile));
         User[] users = new Gson().fromJson(reader, User[].class);
         reader.close();
-        usersFileMutex.V();
 
         for (int i = 0; i < users.length; i++) {
             if (users[i].username.equals(user.username) && users[i].password.equals(user.password))
@@ -97,11 +93,9 @@ public class Server {
 
 
     public static List<Product> getProducts() throws IOException {
-        productsFileMutex.P();
         BufferedReader reader = new BufferedReader(new FileReader(productsFile));
         Product[] products = new Gson().fromJson(reader, Product[].class);
         reader.close();
-        productsFileMutex.V();
         List<Product> list = new ArrayList<Product>();
         Collections.addAll(list, products);
         return list;
